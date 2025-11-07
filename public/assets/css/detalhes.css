@@ -1,0 +1,102 @@
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: #111;
+  color: #eee;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+
+#tela {
+  background: #1e1e1b;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 1000px;
+  margin: 40px auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.album-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+}
+
+.left-side {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.album-cover {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
+.album-cover:hover { transform: scale(1.05); }
+
+.album-info h1 {
+  margin-top: 0;
+  font-size: 26px;
+  color: #fff;
+}
+.album-info p {
+  color: #ccc;
+  margin: 8px 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.album-info strong { color: rgb(37, 3, 230); }
+
+
+.right-side {
+  flex: 1;
+  min-width: 280px;
+  background: #1b1b1b;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+.right-side h2 {
+  color: #fff;
+  font-size: 20px;
+  border-bottom: 2px solid #333;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.right-side ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.right-side li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #333;
+  color: #ccc;
+  font-size: 15px;
+  transition: background 0.3s;
+}
+
+@media (max-width: 768px) {
+  #tela {
+    padding: 20px;
+  }
+  .album-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  .right-side {
+    width: 100%;
+  }
+}
