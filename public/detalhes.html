@@ -2,134 +2,118 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Detalhes do Álbum</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/detalhes.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Detalhes do Álbum</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/detalhes.css">
 
 <body>
 
 
-  <header class="topbar">
+    <header class="topbar">
 
 
-    <div class="actions">
-      <button><i class="fa-solid fa-magnifying-glass"></i></button>
-    </div>
+        <div class="actions">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
 
-    <nav class="sidebar d-flex flex-column p-3">
-      <div class="logo">
-        <img src="images/logo.png" alt="Logo Billie Eilish">
-      </div>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-          <a href="index.html" class="nav-link"><i class="fas fa-home me-2"></i> Home</a>
-        </li>
-        <li>
-          <a href="login.html" class="nav-link"><i class="fas fa-user me-2"></i> Login</a>
-        </li>
-        <li>
-          <a href="favoritos.html" class="nav-link"><i class="fas fa-heart me-2"></i> Favoritos</a>
-        </li>
-        <li>
-          <a href="discografia.html" class="nav-link"><i class="fa-solid fa-record-vinyl me-2"></i>
-            Discografia</a>
-        </li>
-        <li>
-          <a href="conectar.html" class="nav-link"><i class="fas fa-users me-2"></i> Conectar</a>
-        </li>
-        <li class="bottom">
-          <a href="sobre.html"><i class="fas fa-user-circle"></i>Biografia</a>
-        </li>
-
-
-      </ul>
-    </nav>
-  </header>
-  <div id="tela">Carregando...</div>
+        <nav class="sidebar d-flex flex-column p-3">
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo Billie Eilish">
+            </div>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link"><i class="fas fa-home me-2"></i> Home</a>
+                </li>
+                <li>
+                    <a href="login.html" class="nav-link"><i class="fas fa-user me-2"></i> Login</a>
+                </li>
+                <li>
+                    <a href="favoritos.html" class="nav-link"><i class="fas fa-heart me-2"></i> Favoritos</a>
+                </li>
+                <li>
+                    <a href="discografia.html" class="nav-link"><i class="fa-solid fa-record-vinyl me-2"></i>
+                        Discografia</a>
+                </li>
+                <li>
+                    <a href="conectar.html" class="nav-link"><i class="fas fa-users me-2"></i> Conectar</a>
+                </li>
+                <li class="bottom">
+                    <a href="sobre.html"><i class="fas fa-user-circle"></i>Biografia</a>
+                </li>
 
 
-  <script src="assets/scripts/app.js"></script>
-
-  <script>
-    (function () {
-      const tela = document.getElementById('tela');
-
-
-      const params = new URLSearchParams(window.location.search);
-      const idParam = params.get('id');
-      const id = idParam ? Number(idParam) : null;
-
-      if (!id) {
-        tela.innerHTML = '<p>ID inválido. Verifique o link.</p>';
-        console.error('ID inválido na URL:', idParam);
-        return;
-      }
-
-      if (typeof destaque === 'undefined') {
-        tela.innerHTML = '<p>Arquivo de dados não encontrado (app.js).</p>';
-        console.error('Variável "destaque" não encontrada. Verifique se app.js foi carregado e está no mesmo diretório.');
-        return;
-      }
+            </ul>
+        </nav>
+    </header>
+    <div id="tela">Carregando...</div>
 
 
-      const album = destaque.find(a => Number(a.id) === id);
+    <script src="assets/scripts/app.js"></script>
 
-      if (!album) {
-        tela.innerHTML = '<p>Álbum não encontrado.</p>';
-        console.warn('Álbum não encontrado para id:', id);
-        return;
-      }
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const tela = document.getElementById('tela');
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
 
+            if (!id) {
+                tela.innerHTML = '<p>ID inválido. Verifique o link.</p>';
+                return;
+            }
 
-      const titulo = album.album || album.Album || album.titulo || 'Sem título';
-      const lanc = album.lancamento || album['lançamento'] || album.Lancamento || 'Sem data';
-      const info = album.informacoes || album['Informações'] || album.info || album.descricao || '';
-      const imagem = album.imagem || album.imagemUrl || '';
+            try {
+                const resposta = await fetch(`http://localhost:3000/destaque/${id}`);
+                if (!resposta.ok) throw new Error("Álbum não encontrado");
 
-      tela.innerHTML = `
-    <div class="album-layout">
-      <div class="left-side">
-        ${imagem ? `<img src="${imagem}" alt="${titulo}" class="album-cover">` : ''}
-        <div class="album-info">
-          <h1>${titulo}</h1>
-          <p><strong>Lançamento:</strong> ${lanc}</p>
-          <p>${info}</p>
-          <div class="links">
-            <a href="${album.youtube}" target="_blank" class="yt">
-              <i class="bi bi-youtube"></i> YouTube
-            </a>
-            <a href="${album.spotify}" target="_blank" class="sp">
-              <i class="bi bi-spotify"></i> Spotify
-            </a>
+                const album = await resposta.json();
+
+                tela.innerHTML = `
+      <div class="album-layout">
+        <div class="left-side">
+          ${album.imagem ? `<img src="${album.imagem}" alt="${album.album}" class="album-cover">` : ''}
+          <div class="album-info">
+            <h1>${album.album}</h1>
+            <p><strong>Lançamento:</strong> ${album.lancamento}</p>
+            <p>${album.informacoes}</p>
+            <div class="links">
+              <a href="${album.youtube}" target="_blank" class="yt">
+                <i class="bi bi-youtube"></i> YouTube
+              </a>
+              <a href="${album.spotify}" target="_blank" class="sp">
+                <i class="bi bi-spotify"></i> Spotify
+              </a>
+            </div>
           </div>
         </div>
+
+        <div class="right-side">
+          <h2>Faixas</h2>
+          <ul>
+            ${album.faixas && album.faixas.length
+                        ? album.faixas.map(f =>
+                            `<li>
+                      <span>${f.id}. ${f.nome}</span>
+                      <span class="duracao">${f.duracao}</span>
+                    </li>`
+                        ).join('')
+                        : '<li>Nenhuma faixa disponível.</li>'
+                    }
+          </ul>
+        </div>
       </div>
+    `;
 
-      <div class="right-side">
-        <h2>Faixas</h2>
-        <ul>
-          ${album.faixas && album.faixas.length
-          ? album.faixas.map(faixa => `
-                <li>
-                  <span>${faixa.id}. ${faixa.nome}</span>
-                  <span class="duracao">${faixa.duracao}</span>
-                </li>
-              `).join('')
-          : '<li>Nenhuma faixa disponível.</li>'
-        }
-        </ul>
-      </div>
-    </div>
-  `;
-    })();
-
-
-  </script>
+            } catch (erro) {
+                console.error(erro);
+                tela.innerHTML = '<p>Erro ao carregar informações do álbum. Verifique se o JSON Server está rodando e se o id existe.</p>';
+            }
+        });
+    </script>
 </body>
 
 </html>
