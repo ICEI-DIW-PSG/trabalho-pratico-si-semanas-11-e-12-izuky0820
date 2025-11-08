@@ -6,24 +6,26 @@ Para esse projeto, além de mudarmos o JSON para o JSON Server, vamos permitir o
 
 ## Informações do trabalho
 
-- Nome:
-- Matricula:
-- Proposta de projeto escolhida:
-- Breve descrição sobre seu projeto:
+- Nome: Evelyn Vitória Caetano Maestre
+- Matricula: 898782
+- Proposta de projeto escolhida: Coleções e itens
+- Breve descrição sobre seu projeto: Um acervo com as obras da cantora Billie Eilish, onde terá suas músicas, espaço para interação de usuários e muito mais
 
 **Print dos testes da API com Postman ou similar**
 
-<< COLOQUE A IMAGEM GET AQUI >>
+![<< COLOQUE A IMAGEM GET AQUI >>](public/images/GET.png)
 
-<< COLOQUE A IMAGEM POST AQUI >>
+![<< COLOQUE A IMAGEM POST AQUI >>](public/images/Post.png)
+![alt text](public/images/Post2.png)
 
-<< COLOQUE A IMAGEM PUT AQUI >>
+![<< COLOQUE A IMAGEM PUT AQUI >>](public/images/Put.png)
+![alt text](public/images/Put2.png)
 
-<< COLOQUE A IMAGEM DELETE AQUI >>
+![<< COLOQUE A IMAGEM DELETE AQUI >>](public/images/Delete.png)
 
 **Print da aba NETWORK com requisições Fetch/XHR POST e GET**
 
-<<  COLOQUE A IMAGEM AQUI >>
+![<<  COLOQUE A IMAGEM AQUI >>](public/images/Network.png)
 
 ## **Orientações Gerais**
 
