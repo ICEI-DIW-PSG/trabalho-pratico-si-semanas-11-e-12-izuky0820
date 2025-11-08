@@ -16,8 +16,7 @@
 
         <div class="actions">
             <button id="btnBusca"><i class="fa-solid fa-magnifying-glass"></i></button>
-            <input type="text" id="campoBusca" placeholder="Buscar" oninput="pesquisar()"
-                style="display: none;">
+            <input type="text" id="campoBusca" placeholder="Buscar" oninput="pesquisar()" style="display: none;">
         </div>
 
 
@@ -44,8 +43,12 @@
                     <a href="conectar.html" class="nav-link"><i class="fas fa-users me-2"></i> Conectar</a>
                 </li>
                 <li class="bottom">
+                    <a href="addAlbum.html"><i class="fa-solid fa-plus"></i>Adicionar álbum</a>
+                </li>
+                <li class="bottom">
                     <a href="sobre.html"><i class="fas fa-user-circle"></i>Biografia</a>
                 </li>
+
 
 
             </ul>
@@ -53,6 +56,7 @@
     </header>
 
     <main class="content">
+
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
@@ -211,8 +215,45 @@
 
     </main>
 
+    
+
+    <!-- Modal de Edição -->
+    <div class="modal fade" id="editarModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-light border-secondary">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Álbum</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEditar">
+                        <input type="hidden" id="editId">
+                        <div class="mb-2">
+                            <label class="form-label">Nome do álbum</label>
+                            <input type="text" id="editNome" class="form-control" required>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Ano de lançamento</label>
+                            <input type="text" id="editAno" class="form-control" required>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">URL da imagem</label>
+                            <input type="text" id="editImagem" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Informações</label>
+                            <textarea id="editInfo" class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Salvar Alterações</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/scripts/app.js"></script>
+
 
 
 

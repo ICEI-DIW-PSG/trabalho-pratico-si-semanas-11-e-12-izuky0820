@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <section id="novoAlbum" class="p-3 bg-dark text-light">
+        <h3>Adicionar novo álbum</h3>
+        <form id="formAlbum">
+            <input type="text" id="albumNome" placeholder="Nome do álbum" required class="form-control mb-2">
+            <input type="text" id="albumLancamento" placeholder="Ano de lançamento" required class="form-control mb-2">
+            <input type="text" id="albumImagem" placeholder="URL da imagem" class="form-control mb-2">
+            <textarea id="albumInfo" placeholder="Informações" class="form-control mb-2"></textarea>
+            <button type="submit" class="btn btn-success">Adicionar</button>
+        </form>
+    </section>
+
+    <script>
+        const API_URL = "http://localhost:3000/destaque";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("formAlbum");
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const novoAlbum = {
+                    album: document.getElementById("albumNome").value,
+                    lancamento: document.getElementById("albumLancamento").value,
+                    imagem: document.getElementById("albumImagem").value,
+                    informacoes: document.getElementById("albumInfo").value,
+                    faixas: [] 
+                };
+
+                try {
+                    const resp = await fetch(API_URL, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(novoAlbum)
+                    });
+
+                    if (!resp.ok) throw new Error("Erro ao adicionar álbum");
+                    alert("Álbum adicionado com sucesso!");
+
+                    form.reset(); 
+                    window.location.href = "index.html"; 
+                } catch (erro) {
+                    console.error(erro);
+                    alert("Erro ao salvar álbum. Verifique o servidor.");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
